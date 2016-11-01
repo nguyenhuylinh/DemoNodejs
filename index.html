@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.socket.io/socket.io-1.2.1.js"></script>
+    <title>DemoServer</title>
+  </head>
+  <body class="container">
+	<div id="top">Welcome to Index</div>
+	
+
+	<form action="">
+      <input id="m" autocomplete="off" /><button>Send</button>
+    </form>
+	
+    <script>
+		$(document).ready(function(){
+			var socket = io.connect("http://localhost:3000/");
+			$('form').submit(function(){
+				socket.emit('client-gui-thongbao', { noidung: $('#m').val()});				
+				$('#m').val('');
+				return false;
+			  });			
+		});
+    </script>
+  </body>
+</html>
